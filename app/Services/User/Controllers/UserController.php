@@ -46,6 +46,7 @@ class UserController extends Controller
     /**
      * updateUser
      * @param UpdateUserRequest $oRequest
+     * @param $id
      * @return JsonResponse
      */
     public function updateUser(UpdateUserRequest $oRequest, $id) : JsonResponse

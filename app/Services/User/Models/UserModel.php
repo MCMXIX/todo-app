@@ -69,7 +69,7 @@ class UserModel extends Model
         if (empty($mUserModel) === true) {
             return false;
         }
-        
+
         return (bool)$mUserModel->update($aParameters);
     }
 

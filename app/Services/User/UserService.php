@@ -113,6 +113,7 @@ class UserService
         }
 
         session()->put([
+            'user_id'   => $aUser['id'],
             'username'  => $aUser['username'],
             'full_name' => $aUser['first_name'] . ' ' . $aUser['last_name']
         ]);

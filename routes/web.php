@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//USER API ROUTES
 Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(function () {
     Route::middleware([])->group(function () {
         Route::post('/', 'UserController@createUser');
@@ -25,5 +26,15 @@ Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(fu
         Route::post('/validate', 'UserController@validatePassword');
         Route::post('/login', 'UserController@login');
         Route::get('/logout', 'UserController@logout');
+    });
+});
+
+//TODO & NOTE API ROUTES
+Route::namespace('App\Services\Todo\Controllers')->prefix('/api')->group(function () {
+    Route::prefix('/todo')->group(function () {
+        Route::post('/', 'TodoController@createTodo');
+        Route::put('/{id}', 'TodoController@updateTodo');
+        Route::delete('/{id}', 'TodoController@deleteTodo');
+        Route::get('/', 'TodoController@getTodoList');
     });
 });
