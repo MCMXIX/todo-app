@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\User\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(function () {
+    Route::middleware([])->group(function () {
+        Route::post('/', 'UserController@createUser');
+        Route::put('/{id}', 'UserController@updateUser');
+        Route::post('/validate', 'UserController@validatePassword');
+        Route::post('/login', 'UserController@login');
+        Route::get('/logout', 'UserController@logout');
+    });
 });
