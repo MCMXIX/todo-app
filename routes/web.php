@@ -31,10 +31,18 @@ Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(fu
 
 //TODO & NOTE API ROUTES
 Route::namespace('App\Services\Todo\Controllers')->prefix('/api')->group(function () {
+    //TODO
     Route::prefix('/todo')->group(function () {
         Route::post('/', 'TodoController@createTodo');
         Route::put('/{id}', 'TodoController@updateTodo');
         Route::delete('/{id}', 'TodoController@deleteTodo');
         Route::get('/', 'TodoController@getTodoList');
+    });
+
+    //TODO NOTES
+    Route::prefix('/note')->group(function () {
+        Route::post('/', 'TodoNoteController@createNote');
+        Route::put('/{id}', 'TodoNoteController@updateNote');
+        Route::delete('/{id}', 'TodoNoteController@deleteNote');
     });
 });
