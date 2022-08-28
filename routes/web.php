@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** VUE ROUTES **/
-
 //USER MANAGEMENT ROUTES
 $aUserRoutes = [
     'login'        => '/login',
@@ -24,23 +23,25 @@ $aUserRoutes = [
 foreach ($aUserRoutes as $sUserRouteName => $sUserVueRoute) {
     Route::get($sUserVueRoute, function () {
         return view('user');
-    })->middleware([])->name($sUserRouteName);
+    })->middleware(['userLoginCheck'])->name($sUserRouteName);
 }
 /** END OF VUE ROUTES **/
 
 /** USER API ROUTES **/
 Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(function () {
-    Route::middleware([])->group(function () {
+    Route::middleware(['userLoginCheck'])->group(function () {
+        Route::post('/login', 'UserController@login');
         Route::post('/', 'UserController@createUser');
+    });
+    Route::middleware(['userAuth'])->group(function () {
         Route::put('/{id}', 'UserController@updateUser');
         Route::post('/validate', 'UserController@validatePassword');
-        Route::post('/login', 'UserController@login');
         Route::get('/logout', 'UserController@logout');
     });
 });
 
 /** TODO & NOTE API ROUTES **/
-Route::namespace('App\Services\Todo\Controllers')->prefix('/api')->group(function () {
+Route::middleware(['userAuth'])->namespace('App\Services\Todo\Controllers')->prefix('/api')->group(function () {
     //TODO
     Route::prefix('/todo')->group(function () {
         Route::post('/', 'TodoController@createTodo');
@@ -56,4 +57,3 @@ Route::namespace('App\Services\Todo\Controllers')->prefix('/api')->group(functio
         Route::delete('/{id}', 'TodoNoteController@deleteNote');
     });
 });
-/** END OF API ROUTES **/
