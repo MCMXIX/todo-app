@@ -2,7 +2,6 @@
 
 namespace App\Services\Todo\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -19,11 +18,61 @@ class TodoNoteModel extends Model
     protected $table = 'note';
 
     /**
+     * @var array
+     */
+    protected $fillable = [
+        'todo_id',
+        'note',
+        'status'
+    ]; 
+
+    /**
      * set note relationship for todo
      * @return BelongsTo
      */
     public function todo() : BelongsTo
     {
-        $this->belongsTo(TodoModel::class, 'todo_id', 'id');
+        return $this->belongsTo(TodoModel::class);
+    }
+
+    /**
+     * createNote
+     * @param array $aParameters
+     * @return mixed
+     */
+    public function createNote(array $aParameters)
+    {
+        return $this->create($aParameters);
+    }
+
+    /**
+     * updateNote
+     * @param array $aParameters
+     * @param int $iId
+     * @return bool
+     */
+    public function updateNote(array $aParameters, int $iId) : bool
+    {
+        $mTodoNoteModel = $this->find($iId) ?? [];
+        if (empty($mTodoNoteModel) === true) {
+            return false;
+        }
+
+        return (bool)$mTodoNoteModel->update($aParameters);
+    }
+
+    /**
+     * deleteNote
+     * @param int $iId
+     * @return bool
+     */
+    public function deleteNote(int $iId) : bool
+    {
+        $mTodoNoteModel = $this->find($iId) ?? [];
+        if (empty($mTodoNoteModel) === true) {
+            return false;
+        }
+
+        return (bool)$mTodoNoteModel->delete();
     }
 }
