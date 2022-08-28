@@ -1,6 +1,5 @@
 <?php
 
-use App\Services\User\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/** VUE ROUTES **/
 
-//USER API ROUTES
+//USER MANAGEMENT ROUTES
+$aUserRoutes = [
+    'login'        => '/login',
+    'registration' => '/register'
+];
+
+foreach ($aUserRoutes as $sUserRouteName => $sUserVueRoute) {
+    Route::get($sUserVueRoute, function () {
+        return view('user');
+    })->middleware([])->name($sUserRouteName);
+}
+/** END OF VUE ROUTES **/
+
+/** USER API ROUTES **/
 Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(function () {
     Route::middleware([])->group(function () {
         Route::post('/', 'UserController@createUser');
@@ -29,7 +39,7 @@ Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(fu
     });
 });
 
-//TODO & NOTE API ROUTES
+/** TODO & NOTE API ROUTES **/
 Route::namespace('App\Services\Todo\Controllers')->prefix('/api')->group(function () {
     //TODO
     Route::prefix('/todo')->group(function () {
@@ -46,3 +56,4 @@ Route::namespace('App\Services\Todo\Controllers')->prefix('/api')->group(functio
         Route::delete('/{id}', 'TodoNoteController@deleteNote');
     });
 });
+/** END OF API ROUTES **/
