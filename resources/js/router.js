@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from './user/views/login.vue'; 
 import CreateUser from './user/views/CreateUser.vue';
+import Home from './dashboard/views/home.vue';
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ export default new Router({
             path : '/register',
             name : 'registration',
             component : CreateUser
+        },
+        {
+            path : '/',
+            name : 'home',
+            component : Home
         }
     ]
 });

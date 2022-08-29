@@ -4,11 +4,21 @@
             <h1 class="text-4xl font-bold"> LOGIN </h1>
             <div class="pt-10">
                 <label class="block font-bold"> USERNAME </label>
-                <input v-model.trim="sUsername" type="text" :class="[{ 'invalidField' : bErrorUsername }, 'input']" autocomplete="false">
+                <input v-model.trim="sUsername" 
+                    type="text" 
+                    :class="[{ 'invalidField' : bErrorUsername }, 'input']" 
+                    autocomplete="false"
+                    @keypress.enter="doLogin"
+                >
             </div>
             <div class="pt-10">
                 <label class="block font-bold"> PASSWORD </label>
-                <input v-model.trim="sPassword" type="password" :class="[{ 'invalidField' : bErrorPassword }, 'input']" autocomplete="false">
+                <input v-model.trim="sPassword" 
+                    type="password" 
+                    :class="[{ 'invalidField' : bErrorPassword }, 'input']" 
+                    autocomplete="false"
+                    @keypress.enter="doLogin"
+                >
             </div>
             <div class="flex flex-col pt-10">
                 <button class="w-28 text-center rounded h-10 mx-auto bg-slate-400 text-black hover:font-bold border-2 border-white" @click="doLogin">Login</button>
