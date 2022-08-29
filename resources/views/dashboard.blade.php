@@ -13,9 +13,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="w-full">
+<body class="w-full bg-cyan-900">
     <div id="dashboard">
     </div>
     <footer>

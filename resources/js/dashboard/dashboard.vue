@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen bg-cyan-900">
+    <div class="h-full max-h-ful">
         <nav-bar />
         <router-view />
     </div>
