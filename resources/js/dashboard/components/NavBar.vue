@@ -7,7 +7,7 @@
             <div class="flex flex-row-reverse w-1/2 gap-4">
                 <button class="navItem" @click="logout"> Logout </button>
                 <div class="font-normal text-white p-1 text-xl">|</div>
-                <button class="navItem">{{ sUserFullName }}</button>
+                <button :class="{'activeNavItem' : getIsActive('user_info'), 'navItem' : !getIsActive('user_info') }" @click="redirectPage('/user_info')">{{ sUserFullName }}</button>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
              */
             redirectPage(sPath) {
                 if (this.$router.currentRoute.path !== sPath) {
-                    this.$router.push({ path : '/' });
+                    this.$router.push({ path : sPath });
                 }
             }
         }

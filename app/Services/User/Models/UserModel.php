@@ -84,4 +84,16 @@ class UserModel extends Model
             ->get()
             ->toArray();
     }
+
+    /**
+     * getUserbyUserId
+     * @param string $sUsername
+     * @return array
+     */
+    public function getUserbyUserId(int $iUserId) : array
+    {
+        return $this->where('id', $iUserId)
+            ->get()
+            ->toArray();
+    }
 }

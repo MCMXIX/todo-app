@@ -85,4 +85,14 @@ class UserController extends Controller
         session()->flush();
         return redirect()->route('login');
     }
+
+    /**
+     * get username by user_id
+     * @return JsonResponse
+     */
+    public function getUserById() : JsonResponse
+    {
+        $aResult = $this->oUserService->getUserInfo();
+        return response()->json($aResult['data'], $aResult['code']);
+    }
 }

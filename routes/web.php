@@ -28,7 +28,8 @@ foreach ($aUserRoutes as $sUserRouteName => $sUserVueRoute) {
 
 //DASHBOARD ROUTES
 $aDashboardRoutes = [
-    'home' => '/'
+    'home'      => '/',
+    'user_info' => '/user_info'
 ];
 
 foreach ($aDashboardRoutes as $aDashboardRouteName => $sDashboardRoute) {
@@ -48,6 +49,7 @@ Route::namespace('App\Services\User\Controllers')->prefix('/api/user')->group(fu
         Route::put('/{id}', 'UserController@updateUser');
         Route::post('/validate', 'UserController@validatePassword');
         Route::get('/logout', 'UserController@logout');
+        Route::get('/', 'UserController@getUserById');
     });
 });
 

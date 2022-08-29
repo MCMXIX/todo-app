@@ -125,4 +125,18 @@ class UserService
             ]
         ];
     }
+
+    /**
+     * getUserInfo
+     * @return array
+     */
+    public function getUserInfo() : array
+    {
+        return [
+            'code' => 200,
+            'data' => [
+                'user' => $this->oUserModel->getUserbyUserId(session()->get('user_id'))
+            ]
+        ];
+    }
 }

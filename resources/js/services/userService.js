@@ -25,5 +25,13 @@ export default {
      */
     createUser(oParameters) {
         return oApiClient.post('/', oParameters);
+    },
+
+    /**
+     * getUserInfo
+     * @returns 
+     */
+    getUserInfo() {
+        return oApiClient.get('/');
     }
 }
