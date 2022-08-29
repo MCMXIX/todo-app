@@ -82,7 +82,7 @@ class UserController extends Controller
      */
     public function logout()
     {
-        //TODO: UPDATE REDIRECT TO LOGIN PAGE
         session()->flush();
+        return redirect()->route('login');
     }
 }
