@@ -25,6 +25,17 @@ foreach ($aUserRoutes as $sUserRouteName => $sUserVueRoute) {
         return view('user');
     })->middleware(['userLoginCheck'])->name($sUserRouteName);
 }
+
+//DASHBOARD ROUTES
+$aDashboardRoutes = [
+    'home' => '/'
+];
+
+foreach ($aDashboardRoutes as $aDashboardRouteName => $sDashboardRoute) {
+    Route::get($sDashboardRoute, function () {
+        return view('dashboard', ['full_name' => session()->get('full_name')]);
+    })->middleware(['userAuth'])->name($aDashboardRouteName);
+}
 /** END OF VUE ROUTES **/
 
 /** USER API ROUTES **/
